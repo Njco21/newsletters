@@ -1,69 +1,247 @@
 "use client"
 
+import type React from "react"
+
 import Link from "next/link"
 import Image from "next/image"
-import { Book, Menu, X, ChevronDown, ChevronRight } from "lucide-react"
+import {
+  Book,
+  Menu,
+  X,
+  ChevronDown,
+  ChevronRight,
+  Users,
+  Building,
+  History,
+  Briefcase,
+  Phone,
+  GraduationCap,
+  BookOpen,
+  Award,
+  FileText,
+  Calendar,
+  FileCheck,
+  Home,
+  Clock,
+  ShoppingBag,
+  Coffee,
+  DollarSign,
+  Search,
+} from "lucide-react"
 import { useState } from "react"
 
-// Navigation data with submenus
+// Navigation data with mega menu content
 const navigationItems = [
   {
     name: "About",
     href: "#",
-    submenu: [
-      { name: "The Trinity Way", href: "#" },
-      { name: "Administration", href: "#" },
-      { name: "Beliefs & History", href: "#" },
-      { name: "Employment", href: "#" },
-      { name: "Contact Us", href: "#" },
-    ],
+    icon: <Users size={18} />,
+    megaMenu: {
+      columns: [
+        {
+          title: "About TCS",
+          items: [
+            { name: "The Trinity Way", href: "#", icon: <Building size={16} /> },
+            { name: "Administration", href: "#", icon: <Users size={16} /> },
+            { name: "Beliefs & History", href: "#", icon: <History size={16} /> },
+            { name: "Employment", href: "#", icon: <Briefcase size={16} /> },
+            { name: "Contact Us", href: "#", icon: <Phone size={16} /> },
+          ],
+        },
+        {
+          title: "Our Community",
+          items: [
+            { name: "Faculty & Staff", href: "#", icon: <Users size={16} /> },
+            { name: "Board of Directors", href: "#", icon: <Users size={16} /> },
+            { name: "Campus Safety", href: "#", icon: <Building size={16} /> },
+            { name: "News & Events", href: "#", icon: <Calendar size={16} /> },
+          ],
+        },
+        {
+          title: "Quick Links",
+          items: [
+            { name: "School Calendar", href: "#", icon: <Calendar size={16} /> },
+            { name: "Directions", href: "#", icon: <Building size={16} /> },
+            { name: "Inside the Pride Newsletter", href: "#", icon: <FileText size={16} /> },
+          ],
+        },
+      ],
+      featured: {
+        title: "Visit Our Campus",
+        description: "Schedule a tour to see what makes Trinity Christian School special.",
+        link: { name: "Schedule a Tour", href: "#" },
+        image: "/placeholder.svg?key=ps3jn",
+      },
+    },
   },
   {
     name: "Admissions",
     href: "#",
-    submenu: [
-      { name: "Welcome", href: "#" },
-      { name: "Apply to TCS", href: "#" },
-      { name: "Visit Our Campus", href: "#" },
-      { name: "Tuition", href: "#" },
-      { name: "Financial Aid", href: "#" },
-      { name: "Admissions FAQs", href: "#" },
-    ],
+    icon: <GraduationCap size={18} />,
+    megaMenu: {
+      columns: [
+        {
+          title: "Admissions Process",
+          items: [
+            { name: "Welcome", href: "#", icon: <Home size={16} /> },
+            { name: "Apply to TCS", href: "#", icon: <FileCheck size={16} /> },
+            { name: "Visit Our Campus", href: "#", icon: <Building size={16} /> },
+            { name: "Tuition", href: "#", icon: <DollarSign size={16} /> },
+            { name: "Financial Aid", href: "#", icon: <DollarSign size={16} /> },
+            { name: "Admissions FAQs", href: "#", icon: <FileText size={16} /> },
+          ],
+        },
+        {
+          title: "Grade Levels",
+          items: [
+            { name: "Early Learning", href: "#", icon: <Book size={16} /> },
+            { name: "Elementary School", href: "#", icon: <Book size={16} /> },
+            { name: "Middle School", href: "#", icon: <Book size={16} /> },
+            { name: "High School", href: "#", icon: <Book size={16} /> },
+          ],
+        },
+        {
+          title: "Resources",
+          items: [
+            { name: "New Families", href: "#", icon: <Users size={16} /> },
+            { name: "International Students", href: "#", icon: <GraduationCap size={16} /> },
+            { name: "Transfer Students", href: "#", icon: <GraduationCap size={16} /> },
+          ],
+        },
+      ],
+      featured: {
+        title: "Apply Now for 2023-2024",
+        description: "Applications are now being accepted for the upcoming school year.",
+        link: { name: "Start Application", href: "#" },
+        image: "/placeholder.svg?key=8r2mm",
+      },
+    },
   },
   {
     name: "Academics",
     href: "#",
-    submenu: [
-      { name: "About Our Academics", href: "#" },
-      { name: "Early Learning", href: "#" },
-      { name: "Elementary School", href: "#" },
-      { name: "Middle School", href: "#" },
-      { name: "High School", href: "#" },
-      { name: "Skills Development", href: "#" },
-      { name: "TCS Transcripts", href: "#" },
-    ],
+    icon: <BookOpen size={18} />,
+    megaMenu: {
+      columns: [
+        {
+          title: "Programs",
+          items: [
+            { name: "About Our Academics", href: "#", icon: <BookOpen size={16} /> },
+            { name: "Early Learning", href: "#", icon: <Book size={16} /> },
+            { name: "Elementary School", href: "#", icon: <Book size={16} /> },
+            { name: "Middle School", href: "#", icon: <Book size={16} /> },
+            { name: "High School", href: "#", icon: <Book size={16} /> },
+            { name: "Skills Development", href: "#", icon: <Award size={16} /> },
+            { name: "TCS Transcripts", href: "#", icon: <FileText size={16} /> },
+          ],
+        },
+        {
+          title: "Enrichment",
+          items: [
+            { name: "Performing Arts", href: "#", icon: <Award size={16} /> },
+            { name: "Visual Arts", href: "#", icon: <Award size={16} /> },
+            { name: "Music Arts Academy", href: "#", icon: <Award size={16} /> },
+            { name: "Elective Offerings", href: "#", icon: <Award size={16} /> },
+          ],
+        },
+        {
+          title: "Resources",
+          items: [
+            { name: "College Counseling", href: "#", icon: <GraduationCap size={16} /> },
+            { name: "Library", href: "#", icon: <Book size={16} /> },
+            { name: "Technology", href: "#", icon: <BookOpen size={16} /> },
+          ],
+        },
+      ],
+      featured: {
+        title: "Academic Excellence",
+        description: "Trinity Christian School offers a rigorous curriculum in a Christ-centered environment.",
+        link: { name: "Learn More", href: "#" },
+        image: "/trinity-christian-classroom.png",
+      },
+    },
   },
   {
     name: "Athletics",
     href: "#",
-    submenu: [
-      { name: "Athletics Home", href: "#" },
-      { name: "Sports Programs", href: "#" },
-      { name: "Athletic Calendar", href: "#" },
-      { name: "Athletic Forms", href: "#" },
-    ],
+    icon: <Award size={18} />,
+    megaMenu: {
+      columns: [
+        {
+          title: "Athletics Programs",
+          items: [
+            { name: "Athletics Home", href: "#", icon: <Home size={16} /> },
+            { name: "Sports Programs", href: "#", icon: <Award size={16} /> },
+            { name: "Athletic Calendar", href: "#", icon: <Calendar size={16} /> },
+            { name: "Athletic Forms", href: "#", icon: <FileCheck size={16} /> },
+          ],
+        },
+        {
+          title: "Sports",
+          items: [
+            { name: "Fall Sports", href: "#", icon: <Award size={16} /> },
+            { name: "Winter Sports", href: "#", icon: <Award size={16} /> },
+            { name: "Spring Sports", href: "#", icon: <Award size={16} /> },
+          ],
+        },
+        {
+          title: "Resources",
+          items: [
+            { name: "Athletic Handbook", href: "#", icon: <FileText size={16} /> },
+            { name: "Coaches Directory", href: "#", icon: <Users size={16} /> },
+            { name: "Athletic Achievements", href: "#", icon: <Award size={16} /> },
+          ],
+        },
+      ],
+      featured: {
+        title: "Go Lions!",
+        description: "Trinity Christian School athletics develops character, teamwork, and excellence.",
+        link: { name: "View Schedule", href: "#" },
+        image: "/placeholder.svg?key=1qbtc",
+      },
+    },
   },
   {
     name: "Family",
     href: "#",
-    submenu: [
-      { name: "Family Links", href: "#" },
-      { name: "Tuition Management", href: "#" },
-      { name: "After School Care", href: "#" },
-      { name: "School Store", href: "#" },
-      { name: "School Calendar", href: "#" },
-      { name: "Lunch Program", href: "#" },
-    ],
+    icon: <Users size={18} />,
+    megaMenu: {
+      columns: [
+        {
+          title: "Family Resources",
+          items: [
+            { name: "Family Links", href: "#", icon: <Users size={16} /> },
+            { name: "Tuition Management", href: "#", icon: <DollarSign size={16} /> },
+            { name: "After School Care", href: "#", icon: <Clock size={16} /> },
+            { name: "School Store", href: "#", icon: <ShoppingBag size={16} /> },
+            { name: "School Calendar", href: "#", icon: <Calendar size={16} /> },
+            { name: "Lunch Program", href: "#", icon: <Coffee size={16} /> },
+          ],
+        },
+        {
+          title: "Parent Involvement",
+          items: [
+            { name: "Parent Teacher Fellowship", href: "#", icon: <Users size={16} /> },
+            { name: "Volunteer Opportunities", href: "#", icon: <Users size={16} /> },
+            { name: "Booster Club", href: "#", icon: <Award size={16} /> },
+          ],
+        },
+        {
+          title: "Quick Links",
+          items: [
+            { name: "Student/Parent Handbook", href: "#", icon: <FileText size={16} /> },
+            { name: "Health & Safety", href: "#", icon: <FileCheck size={16} /> },
+            { name: "Transportation", href: "#", icon: <Building size={16} /> },
+          ],
+        },
+      ],
+      featured: {
+        title: "Parent Portal",
+        description: "Access grades, attendance, and more through our secure parent portal.",
+        link: { name: "Login to Portal", href: "#" },
+        image: "/placeholder.svg?key=86qjs",
+      },
+    },
   },
 ]
 
@@ -71,12 +249,18 @@ export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openDesktopSubmenu, setOpenDesktopSubmenu] = useState<string | null>(null)
   const [openMobileSubmenus, setOpenMobileSubmenus] = useState<string[]>([])
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
     // Close all submenus when closing the mobile menu
     if (mobileMenuOpen) {
       setOpenMobileSubmenus([])
+    }
+    // Close search if opening mobile menu
+    if (!mobileMenuOpen) {
+      setSearchOpen(false)
     }
   }
 
@@ -96,35 +280,94 @@ export default function Page() {
     }
   }
 
+  const toggleSearch = () => {
+    setSearchOpen(!searchOpen)
+    // Close mobile menu if opening search
+    if (!searchOpen) {
+      setMobileMenuOpen(false)
+    }
+  }
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Here you would typically handle the search query
+    console.log("Searching for:", searchQuery)
+    // For demo purposes, just close the search
+    if (window.innerWidth < 768) {
+      setSearchOpen(false)
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="bg-[#473877] text-white py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <Link href="#" className="flex items-center space-x-3">
-            <div className="bg-white rounded-full p-1 flex items-center justify-center h-12 w-12">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-OcD8C8y7HHEouS7MUfZts99xB0e9Sg.png"
-                alt="Trinity Christian School Logo"
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain"
-              />
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            <Link href="#" className="flex items-center space-x-3">
+              <div className="bg-white rounded-full p-1 flex items-center justify-center h-12 w-12">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-OcD8C8y7HHEouS7MUfZts99xB0e9Sg.png"
+                  alt="Trinity Christian School Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain"
+                />
+              </div>
+              <h1 className="text-xl md:text-2xl font-bold">Trinity Christian School</h1>
+            </Link>
+
+            <div className="flex items-center space-x-2">
+              {/* Desktop Search Button */}
+              <button
+                className="hidden md:flex items-center justify-center text-white hover:text-gray-200 focus:outline-none"
+                onClick={toggleSearch}
+                aria-label="Search"
+              >
+                <Search size={20} />
+              </button>
+
+              {/* Mobile Search and Menu Buttons */}
+              <div className="flex md:hidden space-x-2">
+                <button className="text-white focus:outline-none" onClick={toggleSearch} aria-label="Search">
+                  <Search size={20} />
+                </button>
+                <button
+                  className="text-white focus:outline-none"
+                  onClick={toggleMobileMenu}
+                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                >
+                  {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
             </div>
-            <h1 className="text-xl md:text-2xl font-bold">Trinity Christian School</h1>
-          </Link>
+          </div>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden text-white focus:outline-none"
-            onClick={toggleMobileMenu}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Desktop Search Bar */}
+          {searchOpen && (
+            <div className="mt-4 transition-all duration-300 ease-in-out">
+              <form onSubmit={handleSearch} className="relative">
+                <input
+                  type="text"
+                  placeholder="Search Trinity Christian School..."
+                  className="w-full py-2 px-4 pr-10 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#5a4b8e]"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                />
+                <button
+                  type="submit"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                  aria-label="Submit search"
+                >
+                  <Search size={18} />
+                </button>
+              </form>
+            </div>
+          )}
 
-          {/* Desktop navigation */}
-          <nav className="hidden md:flex space-x-6">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex justify-center space-x-6 mt-4">
             {navigationItems.map((item) => (
               <div key={item.name} className="relative group">
                 <button
@@ -133,24 +376,67 @@ export default function Page() {
                   aria-expanded={openDesktopSubmenu === item.name}
                   aria-haspopup="true"
                 >
-                  {item.name}
+                  <span className="flex items-center">
+                    {item.icon && <span className="mr-1">{item.icon}</span>}
+                    {item.name}
+                  </span>
                   <ChevronDown
                     size={16}
                     className={`ml-1 transition-transform ${openDesktopSubmenu === item.name ? "rotate-180" : ""}`}
                   />
                 </button>
-                {openDesktopSubmenu === item.name && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                    {item.submenu.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        href={subItem.href}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#f0ebff] hover:text-[#473877]"
-                        onClick={() => setOpenDesktopSubmenu(null)}
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
+
+                {/* Mega Menu */}
+                {openDesktopSubmenu === item.name && item.megaMenu && (
+                  <div className="absolute left-0 mt-2 w-screen max-w-6xl bg-white rounded-md shadow-lg py-6 px-4 z-10 -translate-x-1/4">
+                    <div className="grid grid-cols-4 gap-6">
+                      {/* Menu Columns */}
+                      {item.megaMenu.columns.map((column, idx) => (
+                        <div key={idx} className="space-y-4">
+                          <h3 className="text-[#473877] font-bold text-lg border-b border-gray-200 pb-2">
+                            {column.title}
+                          </h3>
+                          <ul className="space-y-2">
+                            {column.items.map((subItem) => (
+                              <li key={subItem.name}>
+                                <Link
+                                  href={subItem.href}
+                                  className="flex items-center text-gray-700 hover:text-[#473877] hover:bg-[#f0ebff] px-2 py-1 rounded transition-colors"
+                                  onClick={() => setOpenDesktopSubmenu(null)}
+                                >
+                                  {subItem.icon && <span className="mr-2 text-[#473877]">{subItem.icon}</span>}
+                                  {subItem.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+
+                      {/* Featured Content */}
+                      {item.megaMenu.featured && (
+                        <div className="bg-[#f0ebff] rounded-lg p-4 flex flex-col">
+                          <h3 className="text-[#473877] font-bold text-lg mb-2">{item.megaMenu.featured.title}</h3>
+                          <p className="text-gray-700 text-sm mb-3">{item.megaMenu.featured.description}</p>
+                          <div className="mb-3">
+                            <Image
+                              src={item.megaMenu.featured.image || "/placeholder.svg"}
+                              alt={item.megaMenu.featured.title}
+                              width={200}
+                              height={120}
+                              className="rounded-md w-full h-auto object-cover"
+                            />
+                          </div>
+                          <Link
+                            href={item.megaMenu.featured.link.href}
+                            className="mt-auto bg-[#473877] text-white px-4 py-2 rounded text-center text-sm hover:bg-[#5a4b8e] transition-colors"
+                            onClick={() => setOpenDesktopSubmenu(null)}
+                          >
+                            {item.megaMenu.featured.link.name}
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
@@ -169,29 +455,77 @@ export default function Page() {
                     onClick={() => toggleMobileSubmenu(item.name)}
                     aria-expanded={openMobileSubmenus.includes(item.name)}
                   >
-                    {item.name}
+                    <span className="flex items-center">
+                      {item.icon && <span className="mr-2">{item.icon}</span>}
+                      {item.name}
+                    </span>
                     <ChevronRight
                       size={16}
                       className={`transition-transform ${openMobileSubmenus.includes(item.name) ? "rotate-90" : ""}`}
                     />
                   </button>
-                  {openMobileSubmenus.includes(item.name) && (
+                  {openMobileSubmenus.includes(item.name) && item.megaMenu && (
                     <div className="pl-4 bg-[#3d2f68]">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className="block py-2 border-b border-[#5a4b8e] last:border-b-0 hover:bg-[#5a4b8e] transition-colors"
-                          onClick={toggleMobileMenu}
-                        >
-                          {subItem.name}
-                        </Link>
+                      {item.megaMenu.columns.map((column) => (
+                        <div key={column.title} className="mb-2">
+                          <h3 className="text-white font-semibold py-2 border-b border-[#5a4b8e]">{column.title}</h3>
+                          <ul>
+                            {column.items.map((subItem) => (
+                              <li key={subItem.name}>
+                                <Link
+                                  href={subItem.href}
+                                  className="flex items-center py-2 text-white hover:bg-[#5a4b8e] transition-colors"
+                                  onClick={toggleMobileMenu}
+                                >
+                                  {subItem.icon && <span className="mr-2">{subItem.icon}</span>}
+                                  {subItem.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       ))}
+                      {item.megaMenu.featured && (
+                        <div className="bg-[#5a4b8e] p-3 rounded mb-2">
+                          <h3 className="text-white font-semibold mb-1">{item.megaMenu.featured.title}</h3>
+                          <p className="text-white text-sm mb-2">{item.megaMenu.featured.description}</p>
+                          <Link
+                            href={item.megaMenu.featured.link.href}
+                            className="inline-block bg-white text-[#473877] px-3 py-1 rounded text-sm font-medium"
+                            onClick={toggleMobileMenu}
+                          >
+                            {item.megaMenu.featured.link.name}
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
               ))}
             </nav>
+          </div>
+        )}
+
+        {/* Mobile Search Bar */}
+        {searchOpen && window.innerWidth < 768 && (
+          <div className="md:hidden mt-4 px-4">
+            <form onSubmit={handleSearch} className="relative">
+              <input
+                type="text"
+                placeholder="Search Trinity Christian School..."
+                className="w-full py-2 px-4 pr-10 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#5a4b8e]"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                aria-label="Submit search"
+              >
+                <Search size={18} />
+              </button>
+            </form>
           </div>
         )}
       </header>
