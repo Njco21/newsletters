@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Book, Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 import { useState } from "react"
-import { SchoolLogo } from "@/components/school-logo"
 
 // Navigation data with submenus
 const navigationItems = [
@@ -102,7 +102,15 @@ export default function Page() {
       <header className="bg-[#473877] text-white py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="#" className="flex items-center space-x-3">
-            <SchoolLogo />
+            <div className="bg-white rounded-full p-1 flex items-center justify-center h-12 w-12">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-OcD8C8y7HHEouS7MUfZts99xB0e9Sg.png"
+                alt="Trinity Christian School Logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain"
+              />
+            </div>
             <h1 className="text-xl md:text-2xl font-bold">Trinity Christian School</h1>
           </Link>
 
